@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/splashImage"
-        android:layout_width="500dp"
-        android:layout_height="600dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -21,6 +21,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="ContentDescription"
-        app:layout_constraintHorizontal_bias="0.494" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.77" />
 
 </android.support.constraint.ConstraintLayout>

@@ -7,9 +7,14 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_hospital"
+        android:icon="@drawable/ic_local_hospital_black_24dp"
+        android:title="Hospital" />
+
+    <item
+        android:id="@+id/navigation_near_by"
+        android:icon="@drawable/ic_near_me_black_24dp"
+        android:title="Near By" />
 
     <item
         android:id="@+id/navigation_member"

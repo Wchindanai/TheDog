@@ -26,8 +26,6 @@ public class Main extends AppCompatActivity  {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     return true;
-                case R.id.navigation_dashboard:
-                    return true;
                 case R.id.navigation_member:
                     getAuthen();
                     return true;
@@ -53,6 +51,7 @@ public class Main extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setItemBackgroundResource(R.color.colorPrimary);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
     }
 
