@@ -1,19 +1,23 @@
 package com.example.dream.thedog;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Register extends AppCompatActivity {
+public class Register extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private EditText username;
     private EditText password;
     private EditText firstName;
@@ -24,6 +28,10 @@ public class Register extends AppCompatActivity {
     private Spinner dropDown;
     private Button singUp;
     private TextView cancel;
+
+    private int _day;
+    private int _month;
+    private int _birthYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,14 @@ public class Register extends AppCompatActivity {
         dropDown = (Spinner) findViewById(R.id.spinner);
         singUp = (Button) findViewById(R.id.signUp);
         cancel = (TextView) findViewById(R.id.cancel);
+        birthDate.setFocusable(false);
+
+        birthDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePicker();
+            }
+        });
 
         List<String> titleList = new ArrayList<String>();
         titleList.add("Male");
@@ -62,8 +78,23 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    private void datePicker() {
+        DialogFragment picker = new DatePickerFragment();
+        picker.show(getFragmentManager(), "datePicker");
+    }
+
 
     private void register() {
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            Calendar c = Calendar.getInstance();
+            c.set(year, month, dayOfMonth);
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = sdf.format(c.getTime());
+
+        birthDate.setText(formattedDate);
+    }
 }

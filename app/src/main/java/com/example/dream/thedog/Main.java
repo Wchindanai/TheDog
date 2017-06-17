@@ -27,21 +27,27 @@ public class Main extends AppCompatActivity  {
                 case R.id.navigation_home:
                     return true;
                 case R.id.navigation_member:
-                    getAuthen();
-                    return true;
+                    return getAuthen();
             }
             return false;
         }
 
     };
 
-    private void getAuthen() {
-        boolean isLogin = sharedPreferences.getBoolean("isLogin", false);
+    private boolean getAuthen() {
+        boolean isLogin = sharedPreferences.getBoolean("is_login", false);
         if(!isLogin){
             startActivity(new Intent(getApplication(), Login.class));
+            return false;
         }
         else{
+            int userId = sharedPreferences.getInt("user_id", 0);
+            Bundle bundle = new Bundle();
+            bundle.putInt("userId", userId);
+            Member member = new Member();
+            member.setArguments(bundle);
             getFragmentManager().beginTransaction().replace(R.id.content, new Member()).commit();
+            return true;
         }
     }
 

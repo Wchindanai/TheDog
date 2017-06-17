@@ -15,7 +15,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
-        int SPLASH_DISPLAY_LENGTH = 5000;
+        int SPLASH_DISPLAY_LENGTH = 4000;
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
