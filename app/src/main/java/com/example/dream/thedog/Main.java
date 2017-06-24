@@ -12,11 +12,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class Main extends AppCompatActivity  {
+public class Main extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
 
-    private static final String MyPREFERENCES = "TheDog" ;
+    private static final String MyPREFERENCES = "TheDog";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -26,6 +26,8 @@ public class Main extends AppCompatActivity  {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     return true;
+                case R.id.navigation_near_by:
+                    return showNearByPage();
                 case R.id.navigation_member:
                     return getAuthen();
             }
@@ -34,13 +36,18 @@ public class Main extends AppCompatActivity  {
 
     };
 
+    private boolean showNearByPage() {
+        getFragmentManager().beginTransaction().replace(R.id.content, new NearBy()).commit();
+        return true;
+    }
+
+
     private boolean getAuthen() {
         boolean isLogin = sharedPreferences.getBoolean("is_login", false);
-        if(!isLogin){
+        if (!isLogin) {
             startActivity(new Intent(getApplication(), Login.class));
             return false;
-        }
-        else{
+        } else {
             int userId = sharedPreferences.getInt("user_id", 0);
             Bundle bundle = new Bundle();
             bundle.putInt("userId", userId);
