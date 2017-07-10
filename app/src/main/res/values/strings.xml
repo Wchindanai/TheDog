@@ -26,4 +26,7 @@
         <item>Female</item>
         <item>Male</item>
     </string-array>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_acident">Acident</string>
 </resources>
