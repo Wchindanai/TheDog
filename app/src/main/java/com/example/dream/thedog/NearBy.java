@@ -50,6 +50,8 @@ public class NearBy extends Fragment implements OnMapReadyCallback {
     private String _longtitude = "";
     private ArrayList<LatLng> latlngs = new ArrayList<>();
     private GoogleMap googleMap;
+    private LocationManager locationManager;
+
 
     @Nullable
     @Override
@@ -82,7 +84,7 @@ public class NearBy extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void onProviderEnabled(String provider) {
-
+                getNearByLocation();
             }
 
             @Override
@@ -104,8 +106,10 @@ public class NearBy extends Fragment implements OnMapReadyCallback {
                     Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.INTERNET
             }, 10);
+            return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         MapFragment fragment = (MapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         fragment.getMapAsync(this);
     }
