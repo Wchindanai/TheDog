@@ -50,7 +50,8 @@
         <activity
             android:name=".Acident"
             android:label="@string/title_activity_acident"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AccidentDetail"></activity>
     </application>
 
 </manifest>
