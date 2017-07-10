@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/symtom_title"
+        android:id="@+id/symptom_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="28dp"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/symtom"
+        android:id="@+id/symptom"
         android:layout_width="310dp"
         android:layout_height="65dp"
         android:layout_marginLeft="60dp"
@@ -36,7 +36,7 @@
         android:text="TextView"
         android:textAppearance="@android:style/TextAppearance.Material.Menu"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symtom_title" />
+        app:layout_constraintTop_toBottomOf="@+id/symptom_title" />
 
     <TextView
         android:id="@+id/medication_title"
@@ -47,7 +47,7 @@
         android:text="วิธีการปฐมพยาบาลเบื้องต้น"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symtom" />
+        app:layout_constraintTop_toBottomOf="@+id/symptom" />
 
     <TextView
         android:id="@+id/medication"

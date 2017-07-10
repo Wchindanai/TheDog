@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TheDog</string>
+    <string name="app_name">Dogtor</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -29,4 +29,5 @@
 
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_acident">Acident</string>
+    <string name="backend_ip">https://daring-span-173305.appspot.com/api</string>
 </resources>
