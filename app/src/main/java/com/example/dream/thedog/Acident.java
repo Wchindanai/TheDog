@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -37,11 +36,14 @@ public class Acident extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acident);
+        setTitle("อุบติเหตุ");
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Accident");
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
         }
+
+
+        accidentList = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);
@@ -50,15 +52,14 @@ public class Acident extends AppCompatActivity {
 
         getAccidentFromApi();
 
-        mAdapter = new AccidentAdapter(accidentList ,this);
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getApplication(), DividerItemDecoration.HORIZONTAL));
+
+        recyclerView.addItemDecoration(new DividerItemDecoration(getApplication(), DividerItemDecoration.VERTICAL));
 
     }
 
     private void getAccidentFromApi() {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://127.0.0.1:8000/api/accident";
+        String url = "https://daring-span-173305.appspot.com/api/accident";
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -79,7 +80,25 @@ public class Acident extends AppCompatActivity {
                     try {
                         JSONObject jsonResponse = new JSONObject(response.body().string());
                         JSONArray data = jsonResponse.getJSONArray("data");
-                        Log.d(TAG, "onResponse: "+ data.toString());
+                        for(int i = 0; i < data.length(); i++){
+                            JSONObject dataObject = data.getJSONObject(i);
+                            String accident = dataObject.getString("accident");
+                            String symptom = dataObject.getString("symptom");
+                            String medication = dataObject.getString("medication");
+                            String note = dataObject.getString("note");
+                            if(!note.isEmpty()){
+                                note = "-";
+                            }
+                            AccidentModel accidentModel = new AccidentModel(accident, symptom, medication, note);
+                            accidentList.add(accidentModel);
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter = new AccidentAdapter(accidentList ,getApplication());
+                                recyclerView.setAdapter(mAdapter);
+                            }
+                        });
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

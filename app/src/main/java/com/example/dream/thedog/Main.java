@@ -22,7 +22,7 @@ public class Main extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    return true;
+                    return showHomePage();
                 case R.id.navigation_near_by:
                     return showNearByPage();
                 case R.id.navigation_member:
@@ -32,6 +32,11 @@ public class Main extends AppCompatActivity {
         }
 
     };
+
+    private boolean showHomePage() {
+        getFragmentManager().beginTransaction().replace(R.id.content, new Home()).commit();
+        return true;
+    }
 
     private boolean showNearByPage() {
         getFragmentManager().beginTransaction().replace(R.id.content, new NearBy()).commit();
@@ -63,6 +68,7 @@ public class Main extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setItemBackgroundResource(R.color.colorPrimary);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        getFragmentManager().beginTransaction().replace(R.id.content, new Home()).commit();
     }
 
 }

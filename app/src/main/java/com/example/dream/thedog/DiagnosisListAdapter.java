@@ -10,40 +10,42 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by dream on 7/10/17.
+ * Created by dream on 7/12/17.
  */
 
-public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHolder> {
-    private List<AccidentModel> accidentModels;
+public class DiagnosisListAdapter extends RecyclerView.Adapter<DiagnosisListAdapter.ViewHolder> {
+    private List<String> DiagnosisList;
     private Context mContext;
 
-    public AccidentAdapter(List<AccidentModel> accidentModels, Context mContext) {
-        this.accidentModels = accidentModels;
+    public DiagnosisListAdapter(List<String> diagnosisList, Context mContext) {
+        DiagnosisList = diagnosisList;
         this.mContext = mContext;
     }
 
     @Override
-    public AccidentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.accident, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        AccidentModel accidentModel = accidentModels.get(position);
-        viewHolder.title.setText(accidentModel.getAccident());
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        String list = DiagnosisList.get(position);
+        holder.title.setText(list);
     }
+
 
     @Override
     public int getItemCount() {
-        return accidentModels.size();
+        return 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         public ViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.accident);
+
         }
     }
 }
