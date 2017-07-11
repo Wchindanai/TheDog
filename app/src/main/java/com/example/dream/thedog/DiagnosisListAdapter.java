@@ -1,6 +1,7 @@
 package com.example.dream.thedog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,9 +30,16 @@ public class DiagnosisListAdapter extends RecyclerView.Adapter<DiagnosisListAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        String list = DiagnosisList.get(position);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final String list = DiagnosisList.get(position);
         holder.title.setText(list);
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DiagnosisStep2.class);
+                intent.putExtra("type", list);
+            }
+        });
     }
 
 

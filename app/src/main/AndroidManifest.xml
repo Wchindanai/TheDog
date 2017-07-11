@@ -52,7 +52,8 @@
             android:label="@string/title_activity_acident"
             android:theme="@style/AppTheme" />
         <activity android:name=".AccidentDetail" />
-        <activity android:name=".Diagnosis"></activity>
+        <activity android:name=".Diagnosis" />
+        <activity android:name=".DiagnosisStep2"></activity>
     </application>
 
 </manifest>

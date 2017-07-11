@@ -39,8 +39,9 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
                 Intent intent = new Intent(mContext, AccidentDetail.class);
                 intent.putExtra("accident", accidentModel.getAccident());
                 intent.putExtra("symptom", accidentModel.getSymptom());
-                intent.putExtra("medication", accidentModel.getAccident());
+                intent.putExtra("medication", accidentModel.getMedication());
                 intent.putExtra("note", accidentModel.getNote());
+                mContext.startActivity(intent);
             }
         });
     }
