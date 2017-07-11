@@ -1,6 +1,7 @@
 package com.example.dream.thedog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +31,18 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        AccidentModel accidentModel = accidentModels.get(position);
+        final AccidentModel accidentModel = accidentModels.get(position);
         viewHolder.title.setText(accidentModel.getAccident());
+        viewHolder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AccidentDetail.class);
+                intent.putExtra("accident", accidentModel.getAccident());
+                intent.putExtra("symptom", accidentModel.getSymptom());
+                intent.putExtra("medication", accidentModel.getAccident());
+                intent.putExtra("note", accidentModel.getNote());
+            }
+        });
     }
 
     @Override
