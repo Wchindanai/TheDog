@@ -15,6 +15,7 @@ import java.util.List;
  */
 
 public class DiagnosisListAdapter extends RecyclerView.Adapter<DiagnosisListAdapter.ViewHolder> {
+    private static final String TAG = "DiagnosisListAdapter";
     private List<String> DiagnosisList;
     private Context mContext;
 
@@ -24,7 +25,7 @@ public class DiagnosisListAdapter extends RecyclerView.Adapter<DiagnosisListAdap
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DiagnosisListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.accident, parent, false);
         return new ViewHolder(view);
     }
@@ -38,6 +39,7 @@ public class DiagnosisListAdapter extends RecyclerView.Adapter<DiagnosisListAdap
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DiagnosisStep2.class);
                 intent.putExtra("type", list);
+                mContext.startActivity(intent);
             }
         });
     }
@@ -45,7 +47,7 @@ public class DiagnosisListAdapter extends RecyclerView.Adapter<DiagnosisListAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        return DiagnosisList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

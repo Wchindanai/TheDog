@@ -30,8 +30,7 @@ public class Diagnosis extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
 
         addListToAdapter();
-        mAdapter = new DiagnosisListAdapter(list, getApplication());
-        recyclerView.setAdapter(mAdapter);
+
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplication(), DividerItemDecoration.VERTICAL));
 
@@ -45,5 +44,8 @@ public class Diagnosis extends AppCompatActivity {
         list.add("ระบบขับถ่าย");
         list.add("หู");
         list.add("ผิวหนัง");
+
+        mAdapter = new DiagnosisListAdapter(list, getApplication());
+        recyclerView.setAdapter(mAdapter);
     }
 }
