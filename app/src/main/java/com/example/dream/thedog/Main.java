@@ -23,6 +23,8 @@ public class Main extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     return showHomePage();
+                case R.id.navigation_hospital:
+                    return showListHospital();
                 case R.id.navigation_near_by:
                     return showNearByPage();
                 case R.id.navigation_member:
@@ -32,6 +34,11 @@ public class Main extends AppCompatActivity {
         }
 
     };
+
+    private boolean showListHospital() {
+        getFragmentManager().beginTransaction().replace(R.id.content, new ListHospital()).commit();
+        return true;
+    }
 
     private boolean showHomePage() {
         getFragmentManager().beginTransaction().replace(R.id.content, new Home()).commit();

@@ -55,7 +55,8 @@
         <activity android:name=".Diagnosis" />
         <activity android:name=".DiagnosisStep2" />
         <activity android:name=".DiagnosisStep3" />
-        <activity android:name=".DiagnosisDetail"></activity>
+        <activity android:name=".DiagnosisDetail" />
+        <activity android:name=".HospitalDetail"></activity>
     </application>
 
 </manifest>
