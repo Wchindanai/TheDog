@@ -33,7 +33,7 @@ public class DiagnosisAdapter extends RecyclerView.Adapter<DiagnosisAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         final QuestionModel question = listQuestion.get(position);
         holder.question.setText(question.getQuestion());
-        holder.question.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DiagnosisStep3.class);

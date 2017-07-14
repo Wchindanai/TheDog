@@ -33,7 +33,7 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         final AccidentModel accidentModel = accidentModels.get(position);
         viewHolder.title.setText(accidentModel.getAccident());
-        viewHolder.title.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, AccidentDetail.class);

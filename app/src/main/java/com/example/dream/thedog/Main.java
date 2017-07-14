@@ -58,11 +58,13 @@ public class Main extends AppCompatActivity {
             return false;
         } else {
             int userId = sharedPreferences.getInt("user_id", 0);
+            String name = sharedPreferences.getString("name", "");
             Bundle bundle = new Bundle();
             bundle.putInt("userId", userId);
+            bundle.putString("name", name);
             Member member = new Member();
             member.setArguments(bundle);
-            getFragmentManager().beginTransaction().replace(R.id.content, new Member()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.content, member).commit();
             return true;
         }
     }

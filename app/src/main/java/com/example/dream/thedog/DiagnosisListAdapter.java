@@ -34,7 +34,7 @@ public class DiagnosisListAdapter extends RecyclerView.Adapter<DiagnosisListAdap
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final String list = DiagnosisList.get(position);
         holder.title.setText(list);
-        holder.title.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DiagnosisStep2.class);

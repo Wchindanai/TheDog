@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -35,7 +34,7 @@ public class DiagnosisStep2 extends AppCompatActivity {
         setContentView(R.layout.activity_diagnosis_step2);
         Bundle bundle = getIntent().getExtras();
         String type = bundle.getString("type");
-        Log.d(TAG, "onCreate: " + type);
+        setTitle("วินิจฉัยโรค");
         questionModelList = new ArrayList<>();
 
         rv = (RecyclerView) findViewById(R.id.rv);

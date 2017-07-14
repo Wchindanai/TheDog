@@ -1,11 +1,11 @@
 package com.example.dream.thedog;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
-import android.support.v7.app.AppCompatActivity;
+import android.icu.util.TimeZone;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,9 +13,22 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class Register extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private EditText username;
@@ -66,7 +79,11 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         singUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                try {
+                    register();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -77,14 +94,77 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
     }
+    // Listener
+    private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+
+        // when dialog box is closed, below method will be called.
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+            String year1 = String.valueOf(selectedYear);
+            String month1 = String.valueOf(selectedMonth + 1);
+            String day1 = String.valueOf(selectedDay);
+            birthDate.setText(day1 + "/" + month1 + "/" + year1);
+
+        }
+    };
 
     private void datePicker() {
-        DialogFragment picker = new DatePickerFragment();
-        picker.show(getFragmentManager(), "datePicker");
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault()); // Get current date
+
+// Create the DatePickerDialog instance
+        DatePickerDialog datePicker = new DatePickerDialog(this,
+                datePickerListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH));
+        datePicker.setCancelable(false);
+        datePicker.setTitle("Select the Birth Date");
+        datePicker.show();
     }
 
 
-    private void register() {
+    private void register() throws JSONException {
+        validateData();
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://daring-span-173305.appspot.com/api/members";
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        JSONObject user = new JSONObject();
+        user.put("first_name", firstName.getText().toString());
+        user.put("last_name", lastName.getText().toString());
+        user.put("username", username.getText().toString());
+        user.put("password", password.getText().toString());
+        user.put("title", dropDown.getSelectedItem().toString());
+        user.put("birth_date", birthDate.getText().toString());
+        user.put("mobile_no", mobileNo.getText().toString());
+        user.put("email", email.getText().toString());
+        RequestBody body = RequestBody.create(JSON, user.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplication(), "Please Check Your Internet Connection", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.code() == 200){
+                    finish();
+                }
+            }
+        });
+
+    }
+
+    private void validateData() {
+
     }
 
     @Override
