@@ -6,6 +6,7 @@ import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -124,7 +125,9 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
 
     private void register() throws JSONException {
-        validateData();
+        if(!validateData()){
+            return;
+        }
         OkHttpClient client = new OkHttpClient();
         String url = "https://daring-span-173305.appspot.com/api/members";
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -163,8 +166,31 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
     }
 
-    private void validateData() {
+    private boolean validateData() {
+        boolean validate = true;
+        if(TextUtils.isEmpty(username.getText().toString())){
+            username.setError("Not Empty");
+            validate = false;
+        }
+        else if (TextUtils.isEmpty(password.getText().toString())){
+            password.setError("Not Empty");
+            validate = false;
+        }
+        else if (TextUtils.isEmpty(firstName.getText().toString())){
+            firstName.setError("Not Empty");
+            validate = false;
+        }
+        else if (TextUtils.isEmpty(lastName.getText().toString())){
+            lastName.setError("Not Empty");
+            validate = false;
+        }
 
+        else if(TextUtils.isEmpty(email.getText().toString())){
+            email.setError("Not Empty");
+            validate = false;
+        }
+
+        return validate;
     }
 
     @Override

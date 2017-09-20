@@ -98,7 +98,7 @@ public class DiagnosisStep3 extends AppCompatActivity {
                         intent.putExtra("symptom", symptom);
                         intent.putExtra("medication", medication);
                         if(id < 100){
-                            intent.putExtra("title", "สุนัขของท่านมีโอกาศที่จะเป็นโรค");
+                            intent.putExtra("title", "สุนัขของท่านมีโอกาสที่จะเป็นโรค");
                         }
                         else {
                             intent.putExtra("title", "สุนัขของท่าน");

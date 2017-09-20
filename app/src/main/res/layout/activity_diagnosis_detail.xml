@@ -27,10 +27,11 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="46dp"
             android:text="Title"
+            android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Title"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"

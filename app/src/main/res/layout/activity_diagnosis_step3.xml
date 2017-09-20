@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="สุนัขของคุณมีอาการ"
+        android:text="สุนัขของคุณ"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
